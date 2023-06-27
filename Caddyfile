@@ -1,0 +1,15 @@
+{
+    auto_https off
+}
+
+:8088 {
+    root * /var/www/public
+    encode gzip
+    file_server
+    php_fastcgi php:9000
+    log {
+        output stdout
+        format console
+    }
+}
+
