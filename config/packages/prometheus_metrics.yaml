@@ -1,6 +1,17 @@
 artprima_prometheus_metrics:
-    namespace: myapp
-    storage: '%env(PROM_METRICS_DSN)%'
+    namespace: MetricsApp
+
+    # metrics backend
+    storage:
+        # Known values: in_memory, apcu, apcng, redis
+        type: '%env(PROM_METRICS_TYPE)%'
+
+        host: '%env(PROM_METRICS_HOST)%'
+        port: '%env(int:PROM_METRICS_PORT)%'
+        timeout: 0.1
+        read_timeout: 10
+        persistent_connections: false
+#        password: '%env(PROM_METRICS_PASSWORD)%'
 
     ignored_routes:
         - prometheus_bundle_prometheus
